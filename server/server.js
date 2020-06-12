@@ -48,7 +48,7 @@ app.get("/get-oauth-link", async (req, res) => {
 });
 
 app.get("/authorize-oauth", async (req, res) => {
-
+  console.log("app.get('/authorize-oauth')");
   const { code, state } = req.query;
   
   // Assert the state matches the state you provided in the OAuth link (optional).
