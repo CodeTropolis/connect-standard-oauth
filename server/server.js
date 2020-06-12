@@ -48,7 +48,7 @@ app.get("/get-oauth-link", async (req, res) => {
 });
 
 app.get("/authorize-oauth", async (req, res) => {
-  console.log("app.get('/authorize-oauth')");
+  console.log("app.get('/authorize-oauth')"); // Logs to terminal
   const { code, state } = req.query;
   
   // Assert the state matches the state you provided in the OAuth link (optional).
@@ -63,11 +63,12 @@ app.get("/authorize-oauth", async (req, res) => {
   }).then(
     (response) => {
       var connected_account_id = response.stripe_user_id;
-      console.log('Connected account ID: ' + connected_account_id);
+      console.log('Connected account ID: ' + connected_account_id); // This does not get logged to the terminal
      // saveAccountId(connected_account_id);
 
-      // Render some HTML or redirect to a different page. This is set in the main Stripe account settings.
-      //return res.redirect(301, '/success.html')
+      // Render some HTML or redirect to a different page. 
+      // This is set the Integration settings in dashboard.stripe.com
+      return res.redirect(301, '/success.html')
     },
     (err) => {
       if (err.type === 'StripeInvalidGrantError') {
